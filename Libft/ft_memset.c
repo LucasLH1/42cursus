@@ -6,7 +6,7 @@
 /*   By: llahaye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:03:10 by llahaye           #+#    #+#             */
-/*   Updated: 2023/10/31 17:15:36 by llahaye          ###   ########.fr       */
+/*   Updated: 2023/10/31 18:42:12 by llahaye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	*ft_memset(void *s, int c, t_size_t n)
 {
 	char			*t;
-	unsigned int	i;
+	t_size_t		i;
 
 	t = s;
 	i = 0;

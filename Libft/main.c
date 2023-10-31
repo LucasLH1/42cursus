@@ -6,7 +6,7 @@
 /*   By: llahaye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 16:07:28 by llahaye           #+#    #+#             */
-/*   Updated: 2023/10/31 17:42:00 by llahaye          ###   ########.fr       */
+/*   Updated: 2023/10/31 18:20:39 by llahaye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,18 @@ int	main(void)
 	printf("APRES:  %s\n\n", buffer_bzero);
 
 	//MEMCPY TEST
-	const char buffer_memcpy_src[50] = "Ceci est un message à copier";
+	char buffer_memcpy_src[100] = "Ceci est un message à copier";
 	char buffer_memcpy_dest[50];
-	printf("FT_BZERO TEST \n");
+	printf("FT_MEMCPY TEST \n");
 	printf("AVANT: %s\n", buffer_memcpy_dest);
 	ft_memcpy(buffer_memcpy_dest, buffer_memcpy_src, strlen(buffer_memcpy_src)+1);
-	printf("APRES: %s\n", buffer_memcpy_dest);
+	printf("APRES: %s\n\n", buffer_memcpy_dest);
+
+	//MEMMOVE TEST
+	char buffer_memmove_src[] = "Ceci est un message à copier";
+	char buffer_memmove_dest[] = "Ceci est le message à supprimer";
+	printf("FT_MEMMOVE TEST \n");
+	printf("AVANT: %s\n", buffer_memmove_dest);
+	ft_memcpy(buffer_memmove_dest, buffer_memmove_src, strlen(buffer_memmove_src)+1);
+	printf("APRES: %s\n\n", buffer_memmove_dest);
 }
