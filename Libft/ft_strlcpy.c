@@ -6,27 +6,25 @@
 /*   By: llahaye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 18:34:30 by llahaye           #+#    #+#             */
-/*   Updated: 2023/10/31 18:41:06 by llahaye          ###   ########.fr       */
+/*   Updated: 2023/11/01 13:41:19 by llahaye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncpy(char *dest, const char *src, t_size_t n)
+t_size_t	ft_strlcpy(char *dst, const char *src, t_size_t maxlen)
 {
-	t_size_t	i;
-	char		*t;
+	t_size_t	srclen;
 
-	t = src;
-	i = 0;
-	while (i < n && src[i] != '\0')
+	srclen = ft_strlen(src);
+	if (srclen + 1 < maxlen)
 	{
-		dest[i] = t[i];
-		i++;
+		ft_memcpy(dst, src, srclen + 1);
 	}
-	while (i < n)
+	else if (maxlen != 0)
 	{
-		dest[i] = '\0';
+		ft_memcpy(dst, src, maxlen - 1);
+		dst[maxlen - 1] = '\0';
 	}
-	return (dest);
+	return (srclen);
 }

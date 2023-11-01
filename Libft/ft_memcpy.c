@@ -6,7 +6,7 @@
 /*   By: llahaye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 17:07:00 by llahaye           #+#    #+#             */
-/*   Updated: 2023/10/31 18:41:47 by llahaye          ###   ########.fr       */
+/*   Updated: 2023/11/01 11:54:02 by llahaye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	*ft_memcpy(void *dest, const void *src, t_size_t n)
 	char			*char_dest;
 	t_size_t		i;
 
+	if ((dest == 0 && src == 0))
+		return (0);
 	char_dest = dest;
 	char_src = src;
 	i = 0;
@@ -26,5 +28,5 @@ void	*ft_memcpy(void *dest, const void *src, t_size_t n)
 		char_dest[i] = char_src[i];
 		i++;
 	}
-	char_dest[i] = '\0';
+	return (char_dest);
 }

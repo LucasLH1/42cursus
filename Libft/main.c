@@ -6,7 +6,7 @@
 /*   By: llahaye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 16:07:28 by llahaye           #+#    #+#             */
-/*   Updated: 2023/10/31 18:20:39 by llahaye          ###   ########.fr       */
+/*   Updated: 2023/11/01 15:34:03 by llahaye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 int	main(void)
 {
+	/*
 	//STRLEN TEST
 	char	buffer_strlen[] = "Ceci est un test du ft_strlen";
 	printf("FT_STRLEN TEST \n%d\n\n", ft_strlen(buffer_strlen));
@@ -43,10 +44,12 @@ int	main(void)
 	printf("APRES: %s\n\n", buffer_memcpy_dest);
 
 	//MEMMOVE TEST
-	char buffer_memmove_src[] = "Ceci est un message à copier";
-	char buffer_memmove_dest[] = "Ceci est le message à supprimer";
+	char *dest = "";
 	printf("FT_MEMMOVE TEST \n");
-	printf("AVANT: %s\n", buffer_memmove_dest);
-	ft_memcpy(buffer_memmove_dest, buffer_memmove_src, strlen(buffer_memmove_src)+1);
-	printf("APRES: %s\n\n", buffer_memmove_dest);
+	printf("AVANT: %s\n", dest);
+	ft_memmove(dest, "consectetur", ft_strlen("consectetur"));
+	printf("APRES: %s\n\n", dest);*/
+	//char b[0xF] = "nyan !";
+
+	//printf("%d", ft_strlcat(((void *)0), b, 0));
 }
