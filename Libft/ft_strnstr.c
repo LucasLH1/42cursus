@@ -1,30 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llahaye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/31 18:34:30 by llahaye           #+#    #+#             */
-/*   Updated: 2023/11/01 17:04:30 by llahaye          ###   ########.fr       */
+/*   Created: 2023/11/01 20:13:44 by llahaye           #+#    #+#             */
+/*   Updated: 2023/11/01 20:30:55 by llahaye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t maxlen)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	size_t	srclen;
+	size_t	i;
+	size_t	j;
 
-	srclen = ft_strlen(src);
-	if (srclen + 1 < maxlen)
+	if (!big && len == 0)
+		return (NULL);
+	if (ft_strlen(little) == 0)
+		return ((char *)big);
+	i = 0;
+	j = 0;
+	while (big[i] != '\0' && i < len)
 	{
-		ft_memcpy(dst, src, srclen + 1);
+		while (big[i] == little[j])
+		{
+			j++;
+		}
+		if (j == ft_strlen(little))
+			return ((char *)big + i);
+		j = 0;
+		i++;
 	}
-	else if (maxlen != 0)
-	{
-		ft_memcpy(dst, src, maxlen - 1);
-		dst[maxlen - 1] = '\0';
-	}
-	return (srclen);
+
+	return (NULL);
 }

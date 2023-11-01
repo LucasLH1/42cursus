@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llahaye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/31 18:34:30 by llahaye           #+#    #+#             */
-/*   Updated: 2023/11/01 17:04:30 by llahaye          ###   ########.fr       */
+/*   Created: 2023/11/01 21:29:13 by llahaye           #+#    #+#             */
+/*   Updated: 2023/11/01 21:45:18 by llahaye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t maxlen)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	size_t	srclen;
+	void	*ptr;
 
-	srclen = ft_strlen(src);
-	if (srclen + 1 < maxlen)
-	{
-		ft_memcpy(dst, src, srclen + 1);
-	}
-	else if (maxlen != 0)
-	{
-		ft_memcpy(dst, src, maxlen - 1);
-		dst[maxlen - 1] = '\0';
-	}
-	return (srclen);
+	if (nmemb == 0 || size == 0)
+		return (malloc(0));
+	ptr = malloc(nmemb * size);
+	if (ptr == NULL)
+		return (NULL);
+	ft_memset((unsigned char *)ptr, 0, nmemb * size);
+	return (ptr);
+
 }

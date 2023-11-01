@@ -6,16 +6,16 @@
 /*   By: llahaye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:03:10 by llahaye           #+#    #+#             */
-/*   Updated: 2023/11/01 11:12:00 by llahaye          ###   ########.fr       */
+/*   Updated: 2023/11/01 17:04:17 by llahaye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *s, int c, t_size_t n)
+void	*ft_memset(void *s, int c, size_t n)
 {
 	char			*t;
-	t_size_t		i;
+	size_t		i;
 
 	t = s;
 	i = 0;

@@ -1,30 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llahaye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/31 18:34:30 by llahaye           #+#    #+#             */
-/*   Updated: 2023/11/01 17:04:30 by llahaye          ###   ########.fr       */
+/*   Created: 2023/11/01 20:35:24 by llahaye           #+#    #+#             */
+/*   Updated: 2023/11/01 21:14:28 by llahaye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t maxlen)
+int	ft_atoi(const char *nptr)
 {
-	size_t	srclen;
+	size_t	i;
+	int		minus;
+	int		res;
 
-	srclen = ft_strlen(src);
-	if (srclen + 1 < maxlen)
+	i = 0;
+	res = 0;
+	minus = 0;
+	while (nptr[i] == 32 || (nptr[i] >= 9 && nptr[i] <= 13))
+		i++;
+	if (nptr[i] == '-' || nptr[i] == '+')
 	{
-		ft_memcpy(dst, src, srclen + 1);
+		if (nptr[i] == '-')
+			minus++;
+		i++;
 	}
-	else if (maxlen != 0)
+	while (ft_isdigit(nptr[i]))
 	{
-		ft_memcpy(dst, src, maxlen - 1);
-		dst[maxlen - 1] = '\0';
+		res = res * 10 + nptr[i] - '0';
+		i++;
 	}
-	return (srclen);
+	if (minus == 1)
+		return (-res);
+	return (res);
 }
