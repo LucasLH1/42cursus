@@ -6,7 +6,7 @@
 /*   By: llahaye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 17:58:20 by llahaye           #+#    #+#             */
-/*   Updated: 2023/11/01 21:57:43 by llahaye          ###   ########.fr       */
+/*   Updated: 2023/11/02 14:17:02 by llahaye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	size_t i;
+	size_t	i;
 
 	if (!dst && !src)
 		return (0);

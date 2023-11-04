@@ -6,7 +6,7 @@
 /*   By: llahaye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 20:13:44 by llahaye           #+#    #+#             */
-/*   Updated: 2023/11/01 20:30:55 by llahaye          ###   ########.fr       */
+/*   Updated: 2023/11/03 13:50:42 by llahaye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,5 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 		j = 0;
 		i++;
 	}
-
 	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: llahaye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 21:29:13 by llahaye           #+#    #+#             */
-/*   Updated: 2023/11/01 21:45:18 by llahaye          ###   ########.fr       */
+/*   Updated: 2023/11/03 13:50:50 by llahaye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,4 @@ void	*ft_calloc(size_t nmemb, size_t size)
 		return (NULL);
 	ft_memset((unsigned char *)ptr, 0, nmemb * size);
 	return (ptr);
-
 }

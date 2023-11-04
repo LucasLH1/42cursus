@@ -6,7 +6,7 @@
 /*   By: llahaye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 17:07:00 by llahaye           #+#    #+#             */
-/*   Updated: 2023/11/01 17:04:07 by llahaye          ###   ########.fr       */
+/*   Updated: 2023/11/03 13:51:24 by llahaye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
 	const char		*char_src;
 	char			*char_dest;
-	size_t		i;
+	size_t			i;
 
 	if ((dest == 0 && src == 0))
 		return (0);
