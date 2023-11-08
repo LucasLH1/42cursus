@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llahaye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 10:26:56 by llahaye           #+#    #+#             */
-/*   Updated: 2023/11/06 10:27:35 by llahaye          ###   ########.fr       */
+/*   Created: 2023/11/06 10:20:53 by llahaye           #+#    #+#             */
+/*   Updated: 2023/11/06 10:42:10 by llahaye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	main(void)
+t_list	*ft_lstnew(void *content)
 {
-	return (0);
+	t_list	*lst;
+
+	lst = malloc(sizeof(*lst));
+	if (!lst)
+		return (NULL);
+	lst->content = content;
+	lst->next = NULL;
+	return (lst);
 }

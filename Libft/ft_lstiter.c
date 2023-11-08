@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llahaye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 10:26:56 by llahaye           #+#    #+#             */
-/*   Updated: 2023/11/06 10:27:35 by llahaye          ###   ########.fr       */
+/*   Created: 2023/11/06 14:48:41 by llahaye           #+#    #+#             */
+/*   Updated: 2023/11/06 14:54:28 by llahaye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	main(void)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	return (0);
+	if (!lst || !f)
+		return ;
+	while (lst)
+	{
+		(f)(lst->content);
+		lst = lst->next;
+	}
 }
