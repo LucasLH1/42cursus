@@ -6,7 +6,7 @@
 /*   By: llahaye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 14:56:48 by llahaye           #+#    #+#             */
-/*   Updated: 2023/11/03 13:43:11 by llahaye          ###   ########.fr       */
+/*   Updated: 2023/11/09 12:10:56 by llahaye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,25 @@
 static size_t	get_nb_words(char const *s, char c)
 {
 	size_t	i;
-	size_t	j;
+	size_t	count_word;
+	int		toggle;
 
 	i = 0;
-	j = 1;
+	toggle = 0;
+	count_word = 0;
 	while (s[i])
 	{
-		if (s[i] == c)
-			j++;
+		if (s[i] != c)
+		{
+			if (!toggle && s[i] != c)
+				count_word++;
+			toggle = 1;
+		}
+		else
+			toggle = 0;
 		i++;
 	}
-	return (j);
+	return (count_word);
 }
 
 static char	*split_char(const char *s, int start, int end)
@@ -52,13 +60,15 @@ char	**ft_split(char const *s, char c)
 	int		index;
 	char	**split;
 
-	split = malloc((get_nb_words(s, c) + 1) * sizeof(char *));
-	if (!s || !split)
+	if (!s)
 		return (NULL);
-	i = 0;
+	split = malloc(sizeof(char *) * (get_nb_words(s, c) + 1));
+	if (!split)
+		return (NULL);
+	i = -1;
 	j = 0;
 	index = -1;
-	while (i <= ft_strlen(s))
+	while (++i <= ft_strlen(s))
 	{
 		if (s[i] != c && index < 0)
 			index = i;
@@ -67,7 +77,6 @@ char	**ft_split(char const *s, char c)
 			split[j++] = split_char(s, index, i);
 			index = -1;
 		}
-		i++;
 	}
 	split[j] = 0;
 	return (split);
