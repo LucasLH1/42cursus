@@ -6,7 +6,7 @@
 /*   By: llahaye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 16:09:55 by llahaye           #+#    #+#             */
-/*   Updated: 2023/11/08 13:48:13 by llahaye          ###   ########.fr       */
+/*   Updated: 2023/11/10 08:48:03 by llahaye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ typedef struct s_list
 int			ft_isalpha(int c);
 int			ft_isdigit(int c);
 int			ft_isalnum(int c);
-int			ft_islower(int c);
-int			ft_isupper(int c);
 int			ft_toupper(int c);
 int			ft_tolower(int c);
 int			ft_isascii(int c);
