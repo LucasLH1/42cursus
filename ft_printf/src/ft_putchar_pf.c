@@ -6,11 +6,12 @@
 /*   By: llahaye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 16:02:06 by llahaye           #+#    #+#             */
-/*   Updated: 2023/11/13 16:03:02 by llahaye          ###   ########.fr       */
+/*   Updated: 2023/11/14 10:43:52 by llahaye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
+#include "../includes/ft_printf.h"
 
 int	ft_putchar_pf(char c)
 {
