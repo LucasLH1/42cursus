@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putstr_pf.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llahaye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 11:11:28 by llahaye           #+#    #+#             */
-/*   Updated: 2023/11/13 16:07:00 by llahaye          ###   ########.fr       */
+/*   Created: 2023/11/13 16:04:27 by llahaye           #+#    #+#             */
+/*   Updated: 2023/11/13 16:06:38 by llahaye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "../libft/libft.h"
+#include "../includes/ft_printf.h"
 
-# include <stdarg.h>
+int	ft_putstr_pf(char *s)
+{
+	int	i;
 
-int		ft_printf(const char *s, ...);
-int		ft_putchar_pf(char c);
-int		ft_putstr_pf(char *s);
-
-#endif
+	i = 0;
+	while (s[i])
+	{
+		ft_putchar_fd(s[i], 1);
+		i++;
+	}
+	return (i);
+}
