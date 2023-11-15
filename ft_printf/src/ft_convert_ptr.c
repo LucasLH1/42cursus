@@ -1,67 +1,63 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putunbr_pf.c                                    :+:      :+:    :+:   */
+/*   ft_convert_ptr.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llahaye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 14:44:24 by llahaye           #+#    #+#             */
-/*   Updated: 2023/11/15 12:58:46 by llahaye          ###   ########.fr       */
+/*   Created: 2023/11/15 17:55:45 by llahaye           #+#    #+#             */
+/*   Updated: 2023/11/15 23:12:07 by llahaye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "../includes/ft_printf.h"
 
-static int	ft_count_digits(unsigned	int num)
+static int	ft_ptr_len(unsigned	long long n)
 {
 	int	len;
 
 	len = 0;
-	while (num > 0)
+	while (n > 0)
 	{
 		len++;
-		num = num / 10;
+		n = n / 16;
 	}
 	return (len);
 }
 
-static char	*ft_uitoa(unsigned int n)
+static void	ft_convert_ptr(unsigned long long n)
 {
-	char	*num;
-	int		len;
-
-	len = ft_count_digits(n);
-	num = (char *)malloc(sizeof(char) * (len + 1));
-	if (!num)
-		return (0);
-	num[len] = '\0';
-	while (n != 0)
+	if (n >= 16)
 	{
-		num[len - 1] = n % 10 + 48;
-		n = n / 10;
-		len--;
-	}
-	return (num);
-}
-
-int	ft_putunbr_pf(unsigned int nbr)
-{
-	char	*number;
-	char	len;
-
-	len = 0;
-	if (nbr == 0)
-	{
-		len = 1;
-		ft_putchar_fd('0', 1);
+		ft_convert_ptr(n / 16);
+		ft_convert_ptr(n % 16);
 	}
 	else
 	{
-		number = ft_uitoa(nbr);
-		len = ft_strlen(number);
-		ft_putstr_fd(number, 1);
-		free(number);
+		if (n < 10)
+			ft_putchar_fd((n + '0'), 1);
+		else
+			ft_putchar_fd((n - 10 + 'a'), 1);
+	}
+}
+
+int	ft_put_ptr(unsigned long long ptr)
+{
+	int	len;
+
+	len = 0;
+	if (ptr == 0)
+	{
+		len += 5;
+		ft_putstr_fd("(nil)", 1);
+	}
+	else
+	{
+		ft_putstr_fd("0x", 1);
+		len = 2;
+		ft_convert_ptr(ptr);
+		len += ft_ptr_len(ptr);
 	}
 	return (len);
 }

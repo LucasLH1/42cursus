@@ -6,48 +6,53 @@
 #    By: llahaye <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/10 11:21:06 by llahaye           #+#    #+#              #
-#    Updated: 2023/11/10 11:21:08 by llahaye          ###   ########.fr        #
+#    Updated: 2023/11/15 18:14:44 by llahaye          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	ft_printf.a
-CC			=	cc
-CCFLAG		=	-Wall -Wextra -Werror
+NAME	=	libftprintf.a
 
-HDR_DIR		=	./includes/
-HDR_FILE	=	ft_printf.h
+LIBFT_PATH	=	./libft
+LIBFT	=	$(LIBFT_PATH)/libft.a
 
-HEADERS		=	$(addprefix $(HDR_DIR), $(HDR_FILE))
+CC	=	clang
+CFLAGS	=	-Wall -Wextra -Werror
 
+RM	=	rm -f
 
-SRC_DIR		=	./src/
-SRC_FILE	=	ft_printf.c
+AR	=	ar
+ARFLAGS	=	rcs
+SOURCES	=	./src/ft_printf.c \
+			./src/ft_convert_hexa.c \
+			./src/ft_putchar_pf.c \
+			./src/ft_putnbr_pf.c \
+			./src/ft_putpercent_pf.c \
+			./src/ft_putstr_pf.c \
+			./src/ft_putunbr_pf.c \
+			./src/ft_convert_ptr.c
 
-SOURCES		=	$(addprefix $(SRC_DIR), $(SRC_FILE))
+OBJECTS	=	$(SOURCES:.c=.o)
 
+.c.o:
+		$(CC) $(CFLAGS) -c $< -o $(<:.c=.o) -I $(LIBFT_PATH)
 
-OBJ_DIR		=	./obj/
-OBJ_FILE	=	$(patsubst %.c, %.o, $(SRC_FILE))
-OBJECTS		=	$(addprefix $(OBJ_DIR), $(OBJ_FILE))
+all:	$(LIBFT) $(NAME)
 
+$(LIBFT):
+		make -C $(LIBFT_PATH)
 
-all			:	$(NAME)
+$(NAME):	$(OBJECTS)
+			cp $(LIBFT) $(NAME)
+			$(AR) $(ARFLAGS) $(NAME) $(OBJECTS)
 
-$(NAME)		:	$(OBJ_DIR) $(OBJECTS)
-		ar -rcs $(NAME) $(OBJECTS)
-		@echo "\033[0;92m* $(NAME) library file was created *\033[0m"
+clean:
+		make clean -C $(LIBFT_PATH)
+		$(RM) $(OBJECTS)
 
-$(OBJ_DIR)%.o : $(SRC_DIR)%.c
-		@$(CC) $(CCFLAGS) -c $< -o $@
+fclean:	clean
+		make fclean -C $(LIBFT_PATH)
+		$(RM) $(NAME)
 
-clean		:
-		rm -rf $(OBJECTS)
-		@echo "\033[0;91m* $(NAME) object files was deleted *\033[0m"
+re:	fclean all
 
-fclean		:	clean
-		rm -rf $(NAME)
-		@echo "\033[0;91m* $(NAME) was deleted *\033[0m"
-
-re			:	fclean $(NAME)
-
-.PHONY		:	all clean fclean re
+.PHONY:	all clean fclean re libft

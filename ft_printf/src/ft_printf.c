@@ -6,7 +6,7 @@
 /*   By: llahaye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:10:49 by llahaye           #+#    #+#             */
-/*   Updated: 2023/11/14 11:18:38 by llahaye          ###   ########.fr       */
+/*   Updated: 2023/11/15 18:18:06 by llahaye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ static int	ft_getformat(va_list args, char c)
 		total_length += ft_putnbr_pf(va_arg(args, int));
 	else if (c == 'u')
 		total_length += ft_putunbr_pf(va_arg(args, unsigned int));
+	else if (c == 'x' || c == 'X')
+		total_length += ft_convert_hexa(va_arg(args, unsigned int), c);
+	else if (c == '%')
+		total_length += ft_putpercent_pf();
+	else if (c == 'p')
+		total_length += ft_put_ptr(va_arg(args, unsigned long long));
 	return (total_length);
 }
 
@@ -54,11 +60,4 @@ int	ft_printf(const char *s, ...)
 	}
 	va_end(args);
 	return (total_length);
-}
-
-int main(void)
-{
-	int i;
-	i = ft_printf("Bonjour %s oui %u", "Toi", -185);
-	ft_printf("\n%d", i);
 }
