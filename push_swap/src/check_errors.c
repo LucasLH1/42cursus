@@ -1,24 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   check_errors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llahaye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 10:50:26 by llahaye           #+#    #+#             */
-/*   Updated: 2023/11/29 16:03:13 by llahaye          ###   ########.fr       */
+/*   Created: 2023/11/30 15:29:42 by llahaye           #+#    #+#             */
+/*   Updated: 2023/11/30 16:01:06 by llahaye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/push_swap.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+int	check_if_dbl(int n, char **argv)
 {
-	if (lst)
+	int	i;
+	int	cptr;
+
+	cptr = 0;
+	i = 1;
+	while (argv[i])
 	{
-		if (*lst)
-			new->next = *lst;
-		else
-			*lst = new;
+		if (ft_atoi(argv[i]) == n)
+			cptr++;
+		if (cptr == 2)
+			return (0);
+		i++;
 	}
+	return (1);
+}
+
+int	check_args(char **argv)
+{
+	int	i;
+
+	i = 1;
+	while(argv[i])
+	{
+		if(!ft_isnumber(argv[i]))
+			return (0);
+		if (!check_if_dbl(ft_atoi(argv[i]), argv))
+			return (0);
+		i++;
+	}
+	return (1);
 }

@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llahaye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 10:50:26 by llahaye           #+#    #+#             */
-/*   Updated: 2023/11/29 16:03:13 by llahaye          ###   ########.fr       */
+/*   Created: 2023/11/30 15:21:51 by llahaye           #+#    #+#             */
+/*   Updated: 2023/11/30 15:26:20 by llahaye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/push_swap.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+int	ft_isnumber(char *arg)
 {
-	if (lst)
+	int	i;
+
+	i = 0;
+	if (arg[i] == '-' || arg[i] == '+')
+		i++;
+	while (arg[i])
 	{
-		if (*lst)
-			new->next = *lst;
-		else
-			*lst = new;
+		if (!ft_isdigit(arg[i]))
+			return (0);
+		i++;
 	}
+	return (1);
 }

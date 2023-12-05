@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   algo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llahaye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 10:50:26 by llahaye           #+#    #+#             */
-/*   Updated: 2023/11/29 16:03:13 by llahaye          ###   ########.fr       */
+/*   Created: 2023/11/30 18:54:06 by llahaye           #+#    #+#             */
+/*   Updated: 2023/12/01 14:32:35 by llahaye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/push_swap.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+void sort_stack(t_stack *stack_a, t_stack *stack_b)
 {
-	if (lst)
+	(void)stack_b;
+	while (stack_a)
 	{
-		if (*lst)
-			new->next = *lst;
-		else
-			*lst = new;
+		printf("%d - %d\n",stack_a->nbr, stack_a->index);
+		stack_a=stack_a->next;
 	}
 }

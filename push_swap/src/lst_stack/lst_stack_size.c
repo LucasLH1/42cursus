@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   lst_stack_size.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llahaye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 10:50:26 by llahaye           #+#    #+#             */
-/*   Updated: 2023/11/29 16:03:13 by llahaye          ###   ########.fr       */
+/*   Created: 2023/11/30 11:56:27 by llahaye           #+#    #+#             */
+/*   Updated: 2023/11/30 12:09:38 by llahaye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/push_swap.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+int	stack_lstsize(t_stack *lst)
 {
-	if (lst)
+	int	i;
+
+	i = 0;
+	while (lst)
 	{
-		if (*lst)
-			new->next = *lst;
-		else
-			*lst = new;
+		lst = lst->next;
+		i++;
 	}
+	return (i);
 }

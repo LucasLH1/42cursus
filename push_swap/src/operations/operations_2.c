@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   operations_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llahaye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 10:50:26 by llahaye           #+#    #+#             */
-/*   Updated: 2023/11/29 16:03:13 by llahaye          ###   ########.fr       */
+/*   Created: 2023/12/01 17:21:20 by llahaye           #+#    #+#             */
+/*   Updated: 2023/12/02 15:38:06 by llahaye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/push_swap.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+void	ra(t_stack **stack_a, int toShow)
 {
-	if (lst)
-	{
-		if (*lst)
-			new->next = *lst;
-		else
-			*lst = new;
-	}
+	t_stack	*tmp;
+
+	tmp = *stack_a;
+	*stack_a = stack_lstlast(*stack_a);
+	(*stack_a)->next = tmp;
+	*stack_a = tmp->next;
+	tmp->next = NULL;
+	if (toShow == 1)
+		ft_putstr_fd("ra\n", 1);
 }
