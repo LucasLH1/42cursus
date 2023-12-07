@@ -6,7 +6,7 @@
 /*   By: llahaye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 11:11:03 by llahaye           #+#    #+#             */
-/*   Updated: 2023/11/27 02:38:02 by llahaye          ###   ########.fr       */
+/*   Updated: 2023/12/07 12:12:23 by llahaye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,12 @@ char	*get_next_line(int fd)
 	if (!str)
 		return (NULL);
 	line = ft_get_line(str);
+	if (!line)
+	{
+		free(str);
+		str = NULL;
+		return (NULL);
+	}
 	str = ft_new_str(str);
 	return (line);
 }
