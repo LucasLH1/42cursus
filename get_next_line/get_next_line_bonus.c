@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llahaye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 11:11:03 by llahaye           #+#    #+#             */
-/*   Updated: 2023/12/07 12:41:08 by llahaye          ###   ########.fr       */
+/*   Updated: 2023/12/07 12:44:05 by llahaye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*read_file(int fd, char *str)
 {
@@ -40,21 +40,21 @@ char	*read_file(int fd, char *str)
 
 char	*get_next_line(int fd)
 {
-	static char	*str;
+	static char	*str[1024];
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	str = read_file(fd, str);
-	if (!str)
+	str[fd] = read_file(fd, str[fd]);
+	if (!str[fd])
 		return (NULL);
-	line = ft_get_line(str);
+	line = ft_get_line(str[fd]);
 	if (!line)
 	{
-		free(str);
-		str = NULL;
+		free(str[fd]);
+		str[fd] = NULL;
 		return (NULL);
 	}
-	str = ft_new_str(str);
+	str[fd] = ft_new_str(str[fd]);
 	return (line);
 }

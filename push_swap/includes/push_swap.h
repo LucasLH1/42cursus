@@ -6,7 +6,7 @@
 /*   By: llahaye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 15:48:51 by llahaye           #+#    #+#             */
-/*   Updated: 2023/12/02 14:33:41 by llahaye          ###   ########.fr       */
+/*   Updated: 2023/12/08 08:49:09 by llahaye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@ void	ss(t_stack **stack_a, t_stack **stack_b, int toShow);
 void	pa(t_stack **stack_a, t_stack **stack_b, int toShow);
 void	pb(t_stack **stack_a, t_stack **stack_b, int toShow);
 void	ra(t_stack **stack_a, int toShow);
+void	rb(t_stack **stack_b, int toShow);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: llahaye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 17:24:53 by llahaye           #+#    #+#             */
-/*   Updated: 2023/12/02 14:33:58 by llahaye          ###   ########.fr       */
+/*   Updated: 2023/12/08 08:48:35 by llahaye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void start_process(char **argv)
 		new_stack = NULL;
 		i++;
 	}
-	ra(&stack_a, 0);
+	rb(&stack_a, 0);
 	while (stack_a)
 	{
 		printf("\n%d - %d",stack_a->nbr, stack_a->index);
