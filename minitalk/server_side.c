@@ -5,46 +5,50 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: llahaye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/11 16:40:14 by llahaye           #+#    #+#             */
-/*   Updated: 2023/12/13 15:06:35 by llahaye          ###   ########.fr       */
+/*   Created: 2023/12/17 23:17:52 by llahaye           #+#    #+#             */
+/*   Updated: 2023/12/17 23:38:37 by llahaye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "minitalk.h"
 #include <signal.h>
 #include <stdio.h>
-#include <stdlib.h>
 #include <unistd.h>
-# define _XOPEN_SOURCE 700
+#include "libft/libft.h"
 
-void sig_handler(int signo, siginfo_t *si)
+void	ft_server_handler(int signum, siginfo_t *info, void *context)
 {
-    if (signo == SIGKILL)
-        printf("%s\n",si->si_value);
+	static int	c = 0;
+	static int	bit = 7;
+
+	(void)info;
+	(void)context;
+	if (signum == SIGUSR1)
+		c += 1 << bit;
+	else if (signum == SIGUSR2)
+		c += 0 << bit;
+	bit--;
+	if (bit == -1)
+	{
+		write(1, &c, 1);
+		bit = 7;
+		c = 0;
+	}
 }
 
-int main(void)
+int	main(void)
 {
+	struct sigaction	sigact;
 
-	int	pid;
-    struct sigaction sa;
-
-	pid = getpid();
-
-	sigemptyset(&sa.sa_mask);
-	sa.sa_sigaction = sig_handler;
-	sa.sa_flags = SA_SIGINFO; /* Important. */
-
-	sigaction(SIGUSR1, &sa, NULL);
-	ft_putstr_fd("		MINITALK SERVER SIDE		\n\n", 1);
-	ft_putstr_fd("	Server : OK\n", 1);
-	ft_putstr_fd("	PID : ", 1);
-	ft_putnbr_fd(pid, 1);
-	ft_putstr_fd("\n\n", 1);
-    while (1)
-    {
-        sleep(1);
-    }
-    return 0;
+	printf("PID : %d\n", getpid());
+	sigact.sa_sigaction = ft_server_handler;
+	sigact.sa_flags = SA_SIGINFO;
+	sigemptyset(&sigact.sa_mask);
+	printf("%d", getpid());
+	write(1, "\n", 1);
+	while (1)
+	{
+		sigaction(SIGUSR1, &sigact, NULL);
+		sigaction(SIGUSR2, &sigact, NULL);
+		pause();
+	}
 }
