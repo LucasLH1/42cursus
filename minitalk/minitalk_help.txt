@@ -1,3 +1,0 @@
-MINITALK NOTES
-	if ((c >> bit) & 1)
-		

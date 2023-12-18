@@ -6,13 +6,13 @@
 /*   By: llahaye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 22:43:47 by llahaye           #+#    #+#             */
-/*   Updated: 2023/12/17 23:12:39 by llahaye          ###   ########.fr       */
+/*   Updated: 2023/12/18 02:05:21 by llahaye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void	ft_send_bits(int pid, int c)
+static void	ft_send_bits(int pid, int c)
 {
 	int	bit;
 
@@ -33,7 +33,9 @@ int	main(int argc, char **argv)
 	int		i;
 	int		pid;
 	unsigned char	*str;
-	if (argc != 3)
+
+	(void)argc;
+	if (!ft_check_args(argc, argv))
 		return (0);
 	i = 0;
 	pid = ft_atoi(argv[1]);
@@ -43,4 +45,5 @@ int	main(int argc, char **argv)
 		ft_send_bits(pid, str[i]);
 		i++;
 	}
+	ft_send_bits(pid, '\n');
 }

@@ -6,38 +6,41 @@
 #    By: llahaye <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/10 11:21:06 by llahaye           #+#    #+#              #
-#    Updated: 2023/12/11 17:15:27 by llahaye          ###   ########.fr        #
+#    Updated: 2023/12/18 02:30:16 by llahaye          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SOURCES = server_side.c client_side.c
-OBJECTS = $(SOURCES:.c=.o)
-
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
+LIBFT = ./libft/libft.a
+RM = rm -rf
 
-all: client server
+SERVER = server
+CLIENT = client
 
+SV_SRCS = server.c
+SV_OBJS = $(SV_SRCS:.c=.o)
 
-server: server_side.o libft
-	$(CC) -o $@ $< -Llibft -lft
+CLIENT_SRCS = error_handler.c client.c
+CLIENT_OBJS = $(CLIENT_SRCS:.c=.o)
 
-client: client_side.o libft
-	$(CC) -o $@ $< -Llibft -lft
+all: $(SERVER) $(CLIENT)
 
-%.o: %.c
-	$(CC) -c $(CFLAGS) $?
+$(LIBFT):
+	$(MAKE) -C ./libft
 
-libft:
-	make -C libft
+$(SERVER): $(SV_OBJS) $(LIBFT)
+	$(CC) $(CFLAGS) $(SV_OBJS) $(LIBFT) -o server
+
+$(CLIENT): $(CLIENT_OBJS) $(LIBFT)
+	$(CC) $(CFLAGS) $(CLIENT_OBJS) $(LIBFT) -o client
 
 clean:
-	rm -f $(OBJECTS)
-	make -C libft clean
+	$(MAKE) clean -C ./libft
+	$(RM) $(SV_OBJS) $(CLIENT_OBJS)
 
 fclean: clean
-	rm -f server client libft/libft.a
-
+	$(MAKE) fclean -C ./libft
+	$(RM) $(SERVER) $(CLIENT)
+	
 re: fclean all
-
-.PHONY: all libft clean fclean re
