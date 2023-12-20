@@ -6,7 +6,7 @@
 /*   By: llahaye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 02:04:32 by llahaye           #+#    #+#             */
-/*   Updated: 2023/12/20 14:29:06 by llahaye          ###   ########.fr       */
+/*   Updated: 2023/12/20 16:18:09 by llahaye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static void	display_error(int errnum)
 		ft_putstr_fd("Try './client --help' for more information.\n", 1);
 	}
 	else if (errnum == -1)
-	{
 		ft_putstr_fd("Please check that the process id is correct.\n", 1);
-	}
+	else if (errnum == -2)
+		ft_putstr_fd("There is no process running with this id.\n", 1);
 }
 
 static void	display_help(void)
@@ -63,19 +63,25 @@ static int	ft_check_only_digits(char *str)
 int	ft_check_args(int argc, char **argv)
 {
 	ft_putstr_fd("\x1b[33m \n", 1);
-	if (ft_strncmp(argv[1], "--help", 6) == 0)
-	{
-		display_help();
-		return (0);
-	}
-	else if (argc != 3)
+
+	if (argc != 3)
 	{
 		display_error(argc);
 		return (0);
 	}
-	else if (kill(ft_atoi(argv[1]), 0) != 0 || !ft_check_only_digits(argv[1]))
+	else if (ft_strncmp(argv[1], "--help", 6) == 0)
+	{
+		display_help();
+		return (0);
+	}
+	else if (!ft_check_only_digits(argv[1]))
 	{
 		display_error(-1);
+		return (0);
+	}
+	else if (kill(ft_atoi(argv[1]), 0) != 0)
+	{
+		display_error(-2);
 		return (0);
 	}
 	return (1);

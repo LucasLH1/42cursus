@@ -6,7 +6,7 @@
 /*   By: llahaye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 22:43:47 by llahaye           #+#    #+#             */
-/*   Updated: 2023/12/20 14:40:01 by llahaye          ###   ########.fr       */
+/*   Updated: 2023/12/20 16:53:27 by llahaye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	ft_send_terminated_string(int pid)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
-		usleep(1000);
+		usleep(500);
 		bit--;
 	}
 }
@@ -40,14 +40,11 @@ static void	ft_send_binary(int pid, char *binary_str)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
-		usleep(1000);
+		usleep(500);
 		i++;
 	}
 	if (binary_str[i] == '\0')
-	{
-		printf("end");
 		ft_send_terminated_string(pid);
-	}
 }
 
 static char	*ft_str_to_binary(unsigned char *str)
@@ -84,7 +81,6 @@ int	main(int argc, char **argv)
 	unsigned char	*str;
 	char			*binary_str;
 
-	(void)argc;
 	if (!ft_check_args(argc, argv))
 		return (0);
 	pid = ft_atoi(argv[1]);
