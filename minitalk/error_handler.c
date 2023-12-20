@@ -6,13 +6,13 @@
 /*   By: llahaye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 02:04:32 by llahaye           #+#    #+#             */
-/*   Updated: 2023/12/18 02:05:58 by llahaye          ###   ########.fr       */
+/*   Updated: 2023/12/20 14:29:06 by llahaye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-static void display_error(int errnum)
+static void	display_error(int errnum)
 {
 	if (errnum > 0 && errnum < 3)
 	{
@@ -31,17 +31,19 @@ static void display_error(int errnum)
 		ft_putstr_fd("Please check that the process id is correct.\n", 1);
 	}
 }
-static void display_help(void)
+
+static void	display_help(void)
 {
 	ft_putstr_fd("UUsage: ./client [PID] [STRING]\n", 1);
-	ft_putstr_fd("Minitalk is a process that enables dialogue\
+	ft_putstr_fd("Minitalk is a process that enables dialogue \
 between a client and a server.\n", 1);
-	ft_putstr_fd("It is necessary to have launched the server file before \
-trying to dialogue via the client file, otherwise it won't work.\n", 1);
+	ft_putstr_fd("It is necessary to have launched the server \
+file before trying to dialogue via the client file, otherwise \
+it won't work.\n", 1);
 	ft_putstr_fd("Example : ./client 40158 \"Hello World !\"\n", 1);
-	ft_putstr_fd("	[PID] is the process id displayed when launching the server file\n", 1);
+	ft_putstr_fd("	[PID] is the process id displayed when launching \
+the server file\n", 1);
 	ft_putstr_fd("	[STRING] is the message you wish to send\n", 1);
-
 }
 
 static int	ft_check_only_digits(char *str)
@@ -78,4 +80,3 @@ int	ft_check_args(int argc, char **argv)
 	}
 	return (1);
 }
-
