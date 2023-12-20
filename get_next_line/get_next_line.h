@@ -6,7 +6,7 @@
 /*   By: llahaye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 11:11:27 by llahaye           #+#    #+#             */
-/*   Updated: 2023/12/07 12:17:41 by llahaye          ###   ########.fr       */
+/*   Updated: 2023/12/20 10:42:57 by llahaye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 1
-#endif
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1
+# endif
 
 char	*get_next_line(int fd);
 char	*read_file(int fd, char *str);

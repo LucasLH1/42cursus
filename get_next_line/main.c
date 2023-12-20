@@ -6,7 +6,7 @@
 /*   By: llahaye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:29:23 by llahaye           #+#    #+#             */
-/*   Updated: 2023/12/19 15:12:30 by llahaye          ###   ########.fr       */
+/*   Updated: 2023/12/20 11:08:47 by llahaye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,19 @@
 
 int main(void)
 {
-    int fd;
+	int fd;
     char *line;
 
-    fd = open("test", O_RDONLY);
-    if (fd == -1)
-    {
-        perror("Erreur lors de l'ouverture du fichier");
-        return (EXIT_FAILURE);
-    }
+    fd = open("test.txt", O_RDONLY);
+	while (1)
+	{
+		line = get_next_line(fd);
+		printf("%s", line);
+		if (!line)
+			break ;
+		free(line);
+	}
+	close(fd);
 
-    // Lecture de la première ligne
-    line = get_next_line(fd);
-    printf("Ligne 1 : %s\n", line);
-    free(line); // N'oubliez pas de libérer la mémoire allouée
-
-    close(fd);
-
-    return (EXIT_SUCCESS);
+	return (EXIT_SUCCESS);
 }

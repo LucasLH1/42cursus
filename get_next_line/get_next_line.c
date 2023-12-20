@@ -6,12 +6,11 @@
 /*   By: llahaye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 11:11:03 by llahaye           #+#    #+#             */
-/*   Updated: 2023/12/19 15:06:00 by llahaye          ###   ########.fr       */
+/*   Updated: 2023/12/19 19:12:54 by llahaye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
 
 char	*read_file(int fd, char *str)
 {
@@ -30,17 +29,11 @@ char	*read_file(int fd, char *str)
 			free(buffer);
 			return (NULL);
 		}
-		else if (read_value == 0)
-		{
-			free(buffer);
-			return (str);
-		}
 		buffer[read_value] = '\0';
 		str = ft_strjoin(str, buffer);
 		if (ft_strchr(str, '\n'))
 			break ;
 	}
-	str[ft_strlen(str)] = '\0';
 	free(buffer);
 	return (str);
 }

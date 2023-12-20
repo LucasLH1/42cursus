@@ -6,7 +6,7 @@
 /*   By: llahaye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:23:05 by llahaye           #+#    #+#             */
-/*   Updated: 2023/12/19 15:17:01 by llahaye          ###   ########.fr       */
+/*   Updated: 2023/12/20 11:10:24 by llahaye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,7 @@ char	*ft_new_str(char *str)
 	}
 	new_str = malloc(sizeof(char) * (ft_strlen(str + i + 1) + 1));
 	if (!new_str)
-	{
-		free(str);
 		return (NULL);
-	}
 	i++;
 	j = 0;
 	while (str[i])
