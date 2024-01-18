@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llahaye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 23:17:52 by llahaye           #+#    #+#             */
-/*   Updated: 2024/01/11 18:00:41 by llahaye          ###   ########.fr       */
+/*   Updated: 2024/01/11 18:00:49 by llahaye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
-#include <stdio.h>
+#include "minitalk_bonus.h"
 
 static char	*g_message = NULL;
 
@@ -38,10 +37,11 @@ static void	startup_message(void)
 	ft_putstr_fd(" ▁▂▃▅▆▓▒░ ✩\x1b[0m\n\n", 1);
 }
 
-static void	print_message(void)
+static void	print_message(int pid)
 {
 	ft_putstr_fd(g_message, 1);
 	ft_putchar_fd('\n', 1);
+	kill(pid, SIGUSR1);
 	g_message = NULL;
 	free(g_message);
 }
@@ -82,7 +82,9 @@ static void	ft_signal_receiver(int signum, siginfo_t *info, void *context)
 	if (bit == -1)
 	{
 		if (c == '\0')
-			print_message();
+		{
+			print_message(info->si_pid);
+		}
 		else
 			append_char(c);
 		bit = 7;

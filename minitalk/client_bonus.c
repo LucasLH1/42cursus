@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   client_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llahaye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/17 22:43:47 by llahaye           #+#    #+#             */
-/*   Updated: 2024/01/16 18:28:26 by llahaye          ###   ########.fr       */
+/*   Created: 2023/12/21 18:09:05 by llahaye           #+#    #+#             */
+/*   Updated: 2024/01/11 18:00:22 by llahaye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
-#include <stdio.h>
+#include "minitalk_bonus.h"
 
 static void	ft_send_terminated_string(int pid)
 {
@@ -56,7 +55,7 @@ static char	*ft_str_to_binary(unsigned char *str)
 	char	*binary_str;
 
 	i = 0;
-	binary_str = malloc(ft_strlen((char *)str) * 8 + 2);
+	binary_str = malloc(ft_strlen((char *)str) * 8 + 1);
 	j = 0;
 	while (str[i])
 	{
@@ -72,8 +71,14 @@ static char	*ft_str_to_binary(unsigned char *str)
 		}
 		i++;
 	}
-	binary_str[ft_strlen((char *)str) * 8 + 2] = '\0';
+	binary_str[ft_strlen((char *)str) * 8 + 1] = '\0';
 	return (binary_str);
+}
+
+static void	signal_handler(int signum)
+{
+	if (signum == SIGUSR1)
+		ft_putstr_fd("Message received", 1);
 }
 
 int	main(int argc, char **argv)
@@ -82,6 +87,7 @@ int	main(int argc, char **argv)
 	unsigned char	*str;
 	char			*binary_str;
 
+	signal(SIGUSR1, signal_handler);
 	if (!ft_check_args(argc, argv))
 		return (0);
 	pid = ft_atoi(argv[1]);
