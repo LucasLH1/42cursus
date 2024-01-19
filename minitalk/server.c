@@ -6,16 +6,15 @@
 /*   By: llahaye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 23:17:52 by llahaye           #+#    #+#             */
-/*   Updated: 2024/01/11 18:00:41 by llahaye          ###   ########.fr       */
+/*   Updated: 2024/01/19 10:03:05 by llahaye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
-#include <stdio.h>
 
 static char	*g_message = NULL;
 
-static void	startup_message(void)
+static void	startup_message(char *pid)
 {
 	ft_putstr_fd("\e[0;34m===============================\
 	=============================================\n", 1);
@@ -34,16 +33,19 @@ static void	startup_message(void)
 	ft_putstr_fd("==========================================\
 	==================================\n", 1);
 	ft_putstr_fd("\e[0;36m		     ✩ ░▒▓▆▅▃▂▁ PID : ", 1);
-	ft_putstr_fd(ft_itoa(getpid()), 1);
+	ft_putstr_fd(pid, 1);
 	ft_putstr_fd(" ▁▂▃▅▆▓▒░ ✩\x1b[0m\n\n", 1);
 }
 
 static void	print_message(void)
 {
-	ft_putstr_fd(g_message, 1);
+	if (g_message)
+	{
+		ft_putstr_fd(g_message, 1);
+		free(g_message);
+	}
 	ft_putchar_fd('\n', 1);
 	g_message = NULL;
-	free(g_message);
 }
 
 static void	append_char(int c)
@@ -64,7 +66,6 @@ static void	append_char(int c)
 	new_str[0] = c;
 	new_str[1] = '\0';
 	g_message = ft_strjoin(g_message, new_str);
-	free(new_str);
 }
 
 static void	ft_signal_receiver(int signum, siginfo_t *info, void *context)
@@ -93,11 +94,14 @@ static void	ft_signal_receiver(int signum, siginfo_t *info, void *context)
 int	main(void)
 {
 	struct sigaction	sa;
+	char				*pid;
 
 	sa.sa_sigaction = ft_signal_receiver;
 	sa.sa_flags = SA_SIGINFO;
 	sigemptyset(&sa.sa_mask);
-	startup_message();
+	pid = ft_itoa(getpid());
+	startup_message(pid);
+	free(pid);
 	while (1)
 	{
 		sigaction(SIGUSR1, &sa, NULL);
